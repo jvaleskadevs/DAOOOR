@@ -1,6 +1,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { Button } from '@nextui-org/react';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
@@ -17,6 +18,8 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <ConnectButton />
+
+        <Button>Click me</Button>
 
         <h1 className={styles.title}>
           Welcome to <a href="">RainbowKit</a> + <a href="">wagmi</a> +{' '}
