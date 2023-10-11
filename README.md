@@ -91,4 +91,4 @@ Polygon zkEVM testnet:
 - **DAOTBA implementation**: 0xE6e2A8DE7893E2B458Ef132BfecCfBE83Ebc7675
 - **DAOTBA proxy #1**: 0xb43df4837ef489c2d5217de30c7bc98167c5aed1
 - **OZ Governor #1**: 0x30be3f5968f269c540a836c5153780be3d045dbc
-- **TallyUI**: [https://www.tally.xyz/gov/erc1155-dao](ERC1155DAO)
+- **TallyUI**: [ERC1155DAO](https://www.tally.xyz/gov/erc1155-dao)
