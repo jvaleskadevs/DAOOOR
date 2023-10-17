@@ -1,20 +1,14 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const [deployer] = await ethers.getSigners();
+  const [signer] = await ethers.getSigners();
   
-  const ERC6551Registry = "0x7721337863daEF71011c4Cb690CE895228b4dFFF";
-  const DAOTBA = "0x9Eaa853832f32f77027328c976b4570Db9066630";
-  const DAORegistry = await ethers.deployContract("contracts/DAORegistry6909.sol:DAORegistry", [ERC6551Registry, DAOTBA]);
-
-  await DAORegistry.waitForDeployment();
-
-  console.log("/////////////////////////");
-  console.log(
-    `DAORegistry deployed to ${DAORegistry.target}`
-  );
-  console.log("/////////////////////////");
+  const DAORegistryAddress = "0x599D3d303d70b23f80a4Be7db4E6E701663034D8";
+  const DAORegistry = await ethers.getContractAt("contracts/DAORegistry6909.sol:DAORegistry", DAORegistryAddress, signer);
   
+  const totalDAOs = await DAORegistry.totalDAOs();
+  console.log(totalDAOs);
+
   const daoUri = "ipfs://bafyreicvasglirukzsyxboin5iztpby74slxezcjzmoqq2ntewnrwdo53y/metadata.json";
   const daoPrice = ethers.parseEther("0.001");
   const sismoGroupId = "0xda1c3726426d5639f4c6352c2c976b87";
@@ -23,8 +17,9 @@ async function main() {
   console.log(tx);
   
   console.log("/////////////////////////");
-  console.log("DAO #1 created.");
+  console.log(`Created DAO ${totalDAOs + 1}.`);
   console.log("/////////////////////////");
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere

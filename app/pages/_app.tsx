@@ -10,6 +10,7 @@ import {
   mainnet,
   optimism,
   polygon,
+  polygonMumbai,
   base,
   zora,
 } from 'wagmi/chains';
@@ -17,13 +18,14 @@ import { publicProvider } from 'wagmi/providers/public';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
+    polygonMumbai,/*
     mainnet,
     polygon,
     optimism,
     arbitrum,
     base,
-    zora,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [goerli] : []),
+    zora,*/
+    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [goerli, polygonMumbai] : []),
   ],
   [publicProvider()]
 );

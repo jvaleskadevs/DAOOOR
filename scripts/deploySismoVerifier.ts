@@ -1,12 +1,12 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const DAOTBA = await ethers.deployContract("contracts/DAOTBA6909.sol:DAOTBA");
+  const SismoVerifier = await ethers.deployContract("SismoVerifier");
 
-  await DAOTBA.waitForDeployment();
+  await SismoVerifier.waitForDeployment();
 
   console.log(
-    `DAOTBA deployed to ${DAOTBA.target}`
+    `SismoVerifier deployed to ${SismoVerifier.target}`
   );
 }
 
