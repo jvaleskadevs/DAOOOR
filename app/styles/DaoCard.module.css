@@ -1,0 +1,9 @@
+.sismoConnectButton {
+	background: black !important;
+}
+.sismoConnectButtonText {
+	color: white !important;
+}
+.sismoConnectButtonLogo {
+	display: none !important;
+}

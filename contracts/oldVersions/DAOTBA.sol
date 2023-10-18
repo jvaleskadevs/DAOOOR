@@ -5,9 +5,9 @@ import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol";
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import "@openzeppelin/contracts/governance/utils/Votes.sol";
-import "./interfaces/ITokenBoundAccount.sol";
+import "../interfaces/ITokenBoundAccount.sol";
 import "./interfaces/IERC1155Votes.sol";
-import "./callback/TokenCallbackHandler.sol";
+import "../callback/TokenCallbackHandler.sol";
 
 interface IERC1155Extended is IERC1155MetadataURI {
     function totalSupply(uint256 id) external view returns (uint256);

@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.6",
     "@nextui-org/react": "^2.1.13",
     "@rainbow-me/rainbowkit": "1.0.11",
     "@sismo-core/sismo-connect-react": "^0.0.23",
     "framer-motion": "^10.16.4",
+    "graphql": "^16.8.1",
     "next": "^13.4.19",
+    "nft.storage": "^7.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "viem": "~1.12.2",

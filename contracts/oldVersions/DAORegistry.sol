@@ -3,10 +3,10 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155URIStorage.sol";
-import "./interfaces/IERC6551Registry.sol";
+import "../interfaces/IERC6551Registry.sol";
 import "./interfaces/IERC1155Votes.sol";
-import "./interfaces/IDAORegistryX.sol";
-import "./DAOGovernor.sol";
+import "./interfaces/IDAORegistry.sol";
+import "../DAOGovernor.sol";
 
 // Create DAOs, join DAOs and edit DAO metadata
 contract DAORegistry is ERC1155Supply, ERC1155URIStorage, IDAORegistry {
@@ -17,8 +17,6 @@ contract DAORegistry is ERC1155Supply, ERC1155URIStorage, IDAORegistry {
     IERC6551Registry public iERC6551Registry;
     // the 6551 TBA implementation
     address public daotbaImplAddress;
-    
-    mapping(uint256 => uint256) public prices;
     
     // initialize the ERC1155 and set metadata
     // store 6551 registry and tba implementation addresses
@@ -32,12 +30,10 @@ contract DAORegistry is ERC1155Supply, ERC1155URIStorage, IDAORegistry {
     
     // register id and metadata of a new DAO, create a TBA for the DAO
     // deploy governor contract and emit an event
-    function createDAO(string memory daoUri, uint256 price) public {
+    function createDAO(string memory daoUri) public {
         uint256 daoId = ++totalDAOs;
         // set the metadata of the new DAO
         _setURI(daoId, daoUri);
-        // set the membership token price
-        prices[daoId] = price;
         
         // call the 6551 registry to create the TBA of the new DAO
         address daoTba = iERC6551Registry.createAccount(
@@ -65,24 +61,11 @@ contract DAORegistry is ERC1155Supply, ERC1155URIStorage, IDAORegistry {
     }
 
     // mint the DAO membership nft and join the DAO
-    function joinDAO(uint256 daoId, uint256 amount, bytes memory data) public payable {
+    function joinDAO(uint256 daoId, uint256 amount, bytes memory data) public {
         // check whether a daoId exists or not, revert if it does not exist
         require(exists(daoId), "DAO does not exist");
-        // revert if the value sent is not equal to the token price * amount of tokens
-        require(amount * prices[daoId] == msg.value, "Invalid price sent");
         // minting the dao membership nft
         _mint(msg.sender, daoId, amount, data);
-        // calling the 6551Registry to get the DAOTBA from the daoId
-        address daoTba = iERC6551Registry.account(
-            daotbaImplAddress,
-            block.chainid,
-            address(this),
-            daoId,
-            42
-        );
-        // send the eth from the payment to the daotba treasury
-        (bool sent, ) = payable(daoTba).call{value: msg.value}("");
-        require(sent, "TreasuryError");
         
         emit DAOJoined(msg.sender, daoId);   
     }

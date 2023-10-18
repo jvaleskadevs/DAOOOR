@@ -94,6 +94,16 @@
   line-height: 1.5;
 }
 
+.sismoConnectButton {
+	background: black !important;
+}
+.sismoConnectButtonText {
+	color: white !important;
+}
+.sismoConnectButtonLogo {
+	display: none
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

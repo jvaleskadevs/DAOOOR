@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
 import { NextUIProvider } from '@nextui-org/react';
-import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { getDefaultWallets, RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import type { AppProps } from 'next/app';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import {
@@ -47,7 +47,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <NextUIProvider>
       <WagmiConfig config={wagmiConfig}>
-        <RainbowKitProvider chains={chains}>
+        <RainbowKitProvider
+          theme={darkTheme({
+            accentColor: 'black',
+            accentColorForegorund: 'white'
+          })}
+          chains={chains}
+        >
           <Component {...pageProps} />
         </RainbowKitProvider>
       </WagmiConfig>

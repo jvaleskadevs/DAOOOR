@@ -1,0 +1,52 @@
+type Approval @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  spender: Bytes! # address
+  DAORegistry_id: BigInt! # uint256
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type DAOCreated @entity(immutable: true) {
+  id: Bytes!
+  daoTba: Bytes! # address
+  daoId: BigInt! # uint256
+  daoGovernor: Bytes! # address
+  daoUri: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type DAOJoined @entity(immutable: true) {
+  id: Bytes!
+  member: Bytes! # address
+  daoId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OperatorSet @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  spender: Bytes! # address
+  approved: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Transfer @entity(immutable: true) {
+  id: Bytes!
+  caller: Bytes! # address
+  sender: Bytes! # address
+  receiver: Bytes! # address
+  DAORegistry_id: BigInt! # uint256
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
