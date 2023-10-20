@@ -11,11 +11,6 @@ export const DAO_REGISTRY_ABI = [
           "internalType": "address",
           "name": "_daotbaImplAddr",
           "type": "address"
-        },
-        {
-          "internalType": "contract IGovernanceDeployer",
-          "name": "_governanceDeployer",
-          "type": "address"
         }
       ],
       "stateMutability": "nonpayable",
@@ -67,15 +62,15 @@ export const DAO_REGISTRY_ABI = [
       "inputs": [
         {
           "indexed": true,
-          "internalType": "uint256",
-          "name": "daoId",
-          "type": "uint256"
-        },
-        {
-          "indexed": true,
           "internalType": "address",
           "name": "daoTba",
           "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "daoId",
+          "type": "uint256"
         },
         {
           "indexed": true,
@@ -88,18 +83,6 @@ export const DAO_REGISTRY_ABI = [
           "internalType": "string",
           "name": "daoUri",
           "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "price",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "bytes16",
-          "name": "data",
-          "type": "bytes16"
         }
       ],
       "name": "DAOCreated",
@@ -118,12 +101,6 @@ export const DAO_REGISTRY_ABI = [
           "indexed": true,
           "internalType": "uint256",
           "name": "daoId",
-          "type": "uint256"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "price",
           "type": "uint256"
         }
       ],
@@ -370,26 +347,6 @@ export const DAO_REGISTRY_ABI = [
       "outputs": [
         {
           "internalType": "uint256",
-          "name": "daoId",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "daotba",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "daoGov",
-          "type": "address"
-        },
-        {
-          "internalType": "string",
-          "name": "daoURI",
-          "type": "string"
-        },
-        {
-          "internalType": "uint256",
           "name": "tokenPrice",
           "type": "uint256"
         },
@@ -397,6 +354,16 @@ export const DAO_REGISTRY_ABI = [
           "internalType": "bytes16",
           "name": "sismoGroupId",
           "type": "bytes16"
+        },
+        {
+          "internalType": "address",
+          "name": "daotba",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "daoURI",
+          "type": "string"
         }
       ],
       "stateMutability": "view",
@@ -415,14 +382,9 @@ export const DAO_REGISTRY_ABI = [
           "type": "uint256"
         },
         {
-          "internalType": "uint8",
-          "name": "daoType",
-          "type": "uint8"
-        },
-        {
-          "internalType": "bytes16",
+          "internalType": "bytes",
           "name": "data",
-          "type": "bytes16"
+          "type": "bytes"
         }
       ],
       "name": "createDAO",
@@ -460,19 +422,6 @@ export const DAO_REGISTRY_ABI = [
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "governanceDeployer",
-      "outputs": [
-        {
-          "internalType": "contract IGovernanceDeployer",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -546,34 +495,6 @@ export const DAO_REGISTRY_ABI = [
         }
       ],
       "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "daoId",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "tokenPrice",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bytes16",
-          "name": "sismoGroupId",
-          "type": "bytes16"
-        },
-        {
-          "internalType": "string",
-          "name": "daoURI",
-          "type": "string"
-        }
-      ],
-      "name": "setConfigDao",
-      "outputs": [],
-      "stateMutability": "nonpayable",
       "type": "function"
     },
     {

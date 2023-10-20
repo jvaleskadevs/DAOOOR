@@ -33,12 +33,10 @@ export function handleDAOCreated(event: DAOCreatedEvent): void {
   let entity = new DAOCreated(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
-  entity.daoId = event.params.daoId
   entity.daoTba = event.params.daoTba
+  entity.daoId = event.params.daoId
   entity.daoGovernor = event.params.daoGovernor
   entity.daoUri = event.params.daoUri
-  entity.price = event.params.price
-  entity.data = event.params.data
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
@@ -53,7 +51,6 @@ export function handleDAOJoined(event: DAOJoinedEvent): void {
   )
   entity.member = event.params.member
   entity.daoId = event.params.daoId
-  entity.price = event.params.price
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp

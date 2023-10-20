@@ -10,11 +10,6 @@
         "internalType": "address",
         "name": "_daotbaImplAddr",
         "type": "address"
-      },
-      {
-        "internalType": "contract IGovernanceDeployer",
-        "name": "_governanceDeployer",
-        "type": "address"
       }
     ],
     "stateMutability": "nonpayable",
@@ -58,15 +53,15 @@
     "inputs": [
       {
         "indexed": true,
-        "internalType": "uint256",
-        "name": "daoId",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
         "internalType": "address",
         "name": "daoTba",
         "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "daoId",
+        "type": "uint256"
       },
       {
         "indexed": true,
@@ -79,18 +74,6 @@
         "internalType": "string",
         "name": "daoUri",
         "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "price",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "bytes16",
-        "name": "data",
-        "type": "bytes16"
       }
     ],
     "name": "DAOCreated",
@@ -109,12 +92,6 @@
         "indexed": true,
         "internalType": "uint256",
         "name": "daoId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "price",
         "type": "uint256"
       }
     ],
@@ -285,12 +262,10 @@
     "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "name": "configOf",
     "outputs": [
-      { "internalType": "uint256", "name": "daoId", "type": "uint256" },
-      { "internalType": "address", "name": "daotba", "type": "address" },
-      { "internalType": "address", "name": "daoGov", "type": "address" },
-      { "internalType": "string", "name": "daoURI", "type": "string" },
       { "internalType": "uint256", "name": "tokenPrice", "type": "uint256" },
-      { "internalType": "bytes16", "name": "sismoGroupId", "type": "bytes16" }
+      { "internalType": "bytes16", "name": "sismoGroupId", "type": "bytes16" },
+      { "internalType": "address", "name": "daotba", "type": "address" },
+      { "internalType": "string", "name": "daoURI", "type": "string" }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -299,8 +274,7 @@
     "inputs": [
       { "internalType": "string", "name": "daoUri", "type": "string" },
       { "internalType": "uint256", "name": "price", "type": "uint256" },
-      { "internalType": "uint8", "name": "daoType", "type": "uint8" },
-      { "internalType": "bytes16", "name": "data", "type": "bytes16" }
+      { "internalType": "bytes", "name": "data", "type": "bytes" }
     ],
     "name": "createDAO",
     "outputs": [],
@@ -319,19 +293,6 @@
     "name": "decimals",
     "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }],
     "stateMutability": "pure",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "governanceDeployer",
-    "outputs": [
-      {
-        "internalType": "contract IGovernanceDeployer",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -373,18 +334,6 @@
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "daoId", "type": "uint256" },
-      { "internalType": "uint256", "name": "tokenPrice", "type": "uint256" },
-      { "internalType": "bytes16", "name": "sismoGroupId", "type": "bytes16" },
-      { "internalType": "string", "name": "daoURI", "type": "string" }
-    ],
-    "name": "setConfigDao",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {

@@ -1,5 +1,5 @@
 import { newMockEvent } from "matchstick-as"
-import { ethereum, Address, BigInt, Bytes } from "@graphprotocol/graph-ts"
+import { ethereum, Address, BigInt } from "@graphprotocol/graph-ts"
 import {
   Approval,
   DAOCreated,
@@ -35,22 +35,20 @@ export function createApprovalEvent(
 }
 
 export function createDAOCreatedEvent(
-  daoId: BigInt,
   daoTba: Address,
+  daoId: BigInt,
   daoGovernor: Address,
-  daoUri: string,
-  price: BigInt,
-  data: Bytes
+  daoUri: string
 ): DAOCreated {
   let daoCreatedEvent = changetype<DAOCreated>(newMockEvent())
 
   daoCreatedEvent.parameters = new Array()
 
   daoCreatedEvent.parameters.push(
-    new ethereum.EventParam("daoId", ethereum.Value.fromUnsignedBigInt(daoId))
+    new ethereum.EventParam("daoTba", ethereum.Value.fromAddress(daoTba))
   )
   daoCreatedEvent.parameters.push(
-    new ethereum.EventParam("daoTba", ethereum.Value.fromAddress(daoTba))
+    new ethereum.EventParam("daoId", ethereum.Value.fromUnsignedBigInt(daoId))
   )
   daoCreatedEvent.parameters.push(
     new ethereum.EventParam(
@@ -61,20 +59,13 @@ export function createDAOCreatedEvent(
   daoCreatedEvent.parameters.push(
     new ethereum.EventParam("daoUri", ethereum.Value.fromString(daoUri))
   )
-  daoCreatedEvent.parameters.push(
-    new ethereum.EventParam("price", ethereum.Value.fromUnsignedBigInt(price))
-  )
-  daoCreatedEvent.parameters.push(
-    new ethereum.EventParam("data", ethereum.Value.fromFixedBytes(data))
-  )
 
   return daoCreatedEvent
 }
 
 export function createDAOJoinedEvent(
   member: Address,
-  daoId: BigInt,
-  price: BigInt
+  daoId: BigInt
 ): DAOJoined {
   let daoJoinedEvent = changetype<DAOJoined>(newMockEvent())
 
@@ -85,9 +76,6 @@ export function createDAOJoinedEvent(
   )
   daoJoinedEvent.parameters.push(
     new ethereum.EventParam("daoId", ethereum.Value.fromUnsignedBigInt(daoId))
-  )
-  daoJoinedEvent.parameters.push(
-    new ethereum.EventParam("price", ethereum.Value.fromUnsignedBigInt(price))
   )
 
   return daoJoinedEvent

@@ -1,22 +1,22 @@
 import { ethers } from "hardhat";
-
+/*
 // using this abi, I just compiled a new contract version
 // losing my working artifacts... hopefully the app is outdated
 import { DAO_REGISTRY_ABI } from "../app/constants/daoRegistry";
-
+*/
 async function main() {
   const [signer] = await ethers.getSigners();
   
-  const DAORegistryAddress = "0x559b00EDacFa5EE8dDD82e1CD53c0D23bc798684";
+  const DAORegistryAddress = "0xeBD0bb6f463971044fB07b91C5B6eD191795a5D9";
   const DAORegistry = await ethers.getContractAt(
-    DAO_REGISTRY_ABI, DAORegistryAddress, signer
+    "contracts/DAORegistry.sol:DAORegistry", DAORegistryAddress, signer
   );
   
-  const daoConfig = await DAORegistry.configOf(1);
+  const daoConfig = await DAORegistry.configOf(3);
   console.log(daoConfig);
   
   const DAOTBA = await ethers.getContractAt(
-    "contracts/DAOTBA6909.sol:DAOTBA", daoConfig[2], signer
+    "contracts/DAOTBA.sol:DAOTBA", daoConfig[1], signer
   );
 
   const daotbaBalance = await ethers.provider.getBalance(DAOTBA.target);

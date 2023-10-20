@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155URIStorage.sol";
 import "../interfaces/IERC6551Registry.sol";
 import "./interfaces/IERC1155Votes.sol";
-import "../interfaces/IDAORegistry6909.sol";
+import "../interfaces/IDAORegistry.sol";
 //import "./DAOGovernor.sol";
 import "../SismoVerifier.sol";
 

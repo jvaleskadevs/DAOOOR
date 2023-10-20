@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.20;
 
-import "./interfaces/IERC6909MetadataURI.sol";
+import "../interfaces/IERC6909MetadataURI.sol";
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import "@openzeppelin/contracts/governance/utils/Votes.sol";
-import "./interfaces/ITokenBoundAccount.sol";
-import "./interfaces/IERC6909Votes.sol";
-import "./callback/TokenCallbackHandler.sol";
+import "../interfaces/ITokenBoundAccount.sol";
+import "../interfaces/IERC6909Votes.sol";
+import "../callback/TokenCallbackHandler.sol";
 
 
 // the DAO TBA implementation, also known as DAO Bound Account.
@@ -48,7 +48,7 @@ contract DAOTBA is TokenCallbackHandler, IERC1271, ITokenBoundAccount, Votes, IE
         return IERC6909MetadataURI(tokenContract).totalSupply(tokenId);
     }
     
-    // IERC1155Votes
+    // IERC6909Votes
     // function called from the DAORegistry after every transfer to update voting power
     function transferVotingUnits(address from, address to, uint256 id, uint256 amount) external {
         (uint256 chainId, address tokenContract, uint256 tokenId) = this.token();
@@ -57,6 +57,17 @@ contract DAOTBA is TokenCallbackHandler, IERC1271, ITokenBoundAccount, Votes, IE
         // calling the Votes function to update voting power
         _transferVotingUnits(from, to, amount);        
     }
+    
+    address public governor;
+    // function called from the DAORegistry after create the TBA to set the governor 
+    function setGovernor(address _governor, uint256 id) public {
+        (uint256 chainId, address tokenContract, uint256 tokenId) = this.token();
+        // tokenContract aka DAORegistry must be the only one allowed to set the governor
+        if (chainId != block.chainid || tokenContract != msg.sender || id != tokenId) revert();
+        // store the governor contract address
+        governor = _governor;
+    }
+    
     
     // override required by Votes, it returns the current voting power of a dao member
     // based on the current amount of tokens this user holds
@@ -68,7 +79,7 @@ contract DAOTBA is TokenCallbackHandler, IERC1271, ITokenBoundAccount, Votes, IE
         return IERC6909MetadataURI(tokenContract).balanceOf(account, tokenId);
     }   
     
-    // basic 6551 functions w/ minor changes to support erc1155
+    // basic 6551 functions w/ minor changes to support erc6909
     // ITokenBoundAccount
 
     // every holder could call this function

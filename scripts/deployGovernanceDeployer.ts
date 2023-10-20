@@ -1,12 +1,12 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const DAOTBA = await ethers.deployContract("contracts/DAOTBA.sol:DAOTBA");
+  const GovernanceDeployer = await ethers.deployContract("GovernanceDeployer");
 
-  await DAOTBA.waitForDeployment();
+  await GovernanceDeployer.waitForDeployment();
 
   console.log(
-    `DAOTBA deployed to ${DAOTBA.target}`
+    `GovernanceDeployer deployed to ${GovernanceDeployer.target}`
   );
 }
 
