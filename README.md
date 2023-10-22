@@ -51,7 +51,7 @@ But, what happened?
 - Confirm the transaction (make sure you have enough ether).
 - Done!
 ### Join DAO (sponsored with Sismo)
-When a founder creates a DAO can selecta a data soruce groupId.This groupId will get free access to the DAO.
+When a founder creates a DAO can select a data source groupId. This groupId will get free access to the DAO.
 Sponsored memberships makes sense in several scenarios, for example combined with a high price to create private communities or give away memberships to students, artists or contributors. Currently, the impersonation mode is on to skip complexity on testing.
 - Connect your wallet pointing to the Polygon Mumbai network.
 - Press `Join with Sismo` button.
@@ -68,10 +68,10 @@ Under the hood:
 ## Scripts flow
 
 Make sure you change the required contract addresses to the ones matching your network in `deployments.info`.  
-**Polygon Mumbai**: make sure the DAORegistry is pointing to DAORegistry to get Sismo support. 
+**Polygon Mumbai**: make sure the DAORegistry is pointing to DAORegistry to get Sismo support.   
 **Polygon zkEVM**: make sure the DAORegistry is pointing to DAORegistryS or the deployment will fail.  
-**Mantle**: make sure {gasLimit: "0x.."} is no commented out and the DAORegistry is pointing to DAORegistryS or the deployment will fail.  
-**Scroll**: make sure {gasLimit: "0x.."} is commented out and the DAORegistry is pointing to DAORegistryS or the deployment will fail.  
+**Mantle**: make sure {gasLimit: "0x.."} is not commented and the DAORegistry is pointing to DAORegistryS or the deployment will fail.  
+**Scroll**: make sure {gasLimit: "0x.."} is commented and the DAORegistry is pointing to DAORegistryS or the deployment will fail.  
 
 - deployERC6551Registry
 - deployDAOTBA
