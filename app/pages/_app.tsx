@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
+import { useEffect, useState } from 'react';
 import { NextUIProvider } from '@nextui-org/react';
 import { getDefaultWallets, RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import type { AppProps } from 'next/app';
@@ -44,19 +45,25 @@ const wagmiConfig = createConfig({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [isReady, setIsReady] = useState<boolean>(false);
+  useEffect(() => {
+    setIsReady(true);
+  }, []);
   return (
     <NextUIProvider>
+      { isReady && (
       <WagmiConfig config={wagmiConfig}>
         <RainbowKitProvider
           theme={darkTheme({
             accentColor: 'black',
-            accentColorForegorund: 'white'
+            accentColorForeground: 'white'
           })}
           chains={chains}
         >
           <Component {...pageProps} />
         </RainbowKitProvider>
       </WagmiConfig>
+      )}
     </NextUIProvider>
   );
 }

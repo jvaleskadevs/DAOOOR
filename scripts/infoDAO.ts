@@ -7,8 +7,8 @@ import { DAO_REGISTRY_ABI } from "../app/constants/daoRegistry";
 async function main() {
   const [signer] = await ethers.getSigners();
   
-  const DAORegistryAddress = "0xeBD0bb6f463971044fB07b91C5B6eD191795a5D9";
-  const DAORegistry = await ethers.getContractAt("contracts/DAORegistry.sol:DAORegistry", DAORegistryAddress, signer);
+  const DAORegistryAddress = "0x53f6DD0d1eb5649Aa3BD65c54e6dA7631F4F22Bb";
+  const DAORegistry = await ethers.getContractAt("contracts/DAORegistryS.sol:DAORegistry", DAORegistryAddress, signer);
   
   console.log(await DAORegistry.name());
   console.log(await DAORegistry.symbol());

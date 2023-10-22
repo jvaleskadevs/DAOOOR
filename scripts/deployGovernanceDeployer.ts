@@ -1,7 +1,7 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const GovernanceDeployer = await ethers.deployContract("GovernanceDeployer");
+  const GovernanceDeployer = await ethers.deployContract("GovernanceDeployer", {gasLimit: "0x1000000"});
 
   await GovernanceDeployer.waitForDeployment();
 

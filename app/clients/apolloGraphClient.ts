@@ -1,19 +1,23 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
-const APIURL = 'https://api.studio.thegraph.com/query/55781/ethonline2023/v0.0.1';
+const APIURL = 'https://api.studio.thegraph.com/query/55781/ethonline2023/v0.0.2';
 
-export const recentEventsQuery = `
+export const allDAOEventsQuery = `
 {
-  daocreateds(first: 5) {
+  daocreateds {
     id
-    daoTba
     daoId
+    daoTba
     daoGovernor
+    daoUri
+    data
+    price
   }
-  daojoineds(first: 5) {
+  daojoineds {
     id
     daoId
     member
+    price
   }
 }
 `;
@@ -23,11 +27,13 @@ export const apollo = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+/*
 apollo
   .query({
-    query: gql(recentEventsQuery),
+    query: gql(allDAOEventsQuery),
   })
   .then((data) => console.log('Subgraph data: ', data))
   .catch((err) => {
     console.log('Error fetching data: ', err)
 });
+*/

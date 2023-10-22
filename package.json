@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.0",
+    "@openzeppelin/hardhat-upgrades": "^2.3.3",
     "@sismo-core/sismo-connect-solidity": "^0.0.21",
     "dotenv": "^16.3.1"
   }

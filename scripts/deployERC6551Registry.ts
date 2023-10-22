@@ -1,7 +1,7 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const ERC6551Registry = await ethers.deployContract("ERC6551Registry");
+  const ERC6551Registry = await ethers.deployContract("ERC6551Registry"/*, {gasLimit: "0x1000000"}*/);
 
   await ERC6551Registry.waitForDeployment();
 

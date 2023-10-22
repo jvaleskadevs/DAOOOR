@@ -9,9 +9,10 @@ import { AUTHS, CONFIG } from "../config/sismoConfig";
 import { signMessage } from "../utils/signMessage";
 import { DAO_REGISTRY_ADDRESS, DAO_REGISTRY_ABI } from '../constants/daoRegistry';
 const ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
+const ADDRESS_ZERO_16 = "0x00000000000000000000000000000000";
 
 type Props = {
-  dao: ConfigDao;
+  dao: any;
 }
 
 const DaoCard = ({ dao }: Props) => {
@@ -26,23 +27,23 @@ const DaoCard = ({ dao }: Props) => {
     abi: DAO_REGISTRY_ABI,
     functionName: 'joinDAO',
     args: [
-      4,//dao?.id?.toString() ?? '',
-      1,
-      responseBytes ?? ADDRESS_ZERO
+      dao?.id?.toString() ?? '0',
+      BigInt('1'), // amount
+      responseBytes as `0x${string}` ?? ADDRESS_ZERO
     ]
   });
 
-  const joinDao = async (daoId: string) => {
+  const joinDao = async () => {
     //write?.({ value: parseEther("0.001") });
     if (responseBytes || dao.tokenPrice == 0) {
       write?.();
     } else {
-      write?.({ value: parseEther("0.001") });
+      write?.({ value: dao.tokenPrice });
     }
   }
   
   const fetchMetadata = async (uri: string) => {
-    let response = await fetch(buildIpfsGateway(dao.uri));
+    let response: any = await fetch(buildIpfsGateway(dao.uri) as any);
     if (response.ok) {
       console.log(response);
       response = await response.json();
@@ -70,7 +71,6 @@ const DaoCard = ({ dao }: Props) => {
         <h1 className="text-xl font-semibold">{metadata?.name}</h1>
         <Image
           radius="full"
-          size="sm"
           width="36"
           height="36"
           alt="governance"
@@ -92,7 +92,7 @@ const DaoCard = ({ dao }: Props) => {
         </div>
       </div>
       
-      { dao?.sismoGroupId && !responseBytes && (
+      { dao?.sismoGroupId !== ADDRESS_ZERO_16 && !responseBytes && (
         <SismoConnectButton 
           config={CONFIG}
           auths={AUTHS}

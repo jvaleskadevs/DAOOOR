@@ -187,19 +187,6 @@ export class DAOCreated extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
-  get daoTba(): Bytes {
-    let value = this.get("daoTba");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toBytes();
-    }
-  }
-
-  set daoTba(value: Bytes) {
-    this.set("daoTba", Value.fromBytes(value));
-  }
-
   get daoId(): BigInt {
     let value = this.get("daoId");
     if (!value || value.kind == ValueKind.NULL) {
@@ -211,6 +198,19 @@ export class DAOCreated extends Entity {
 
   set daoId(value: BigInt) {
     this.set("daoId", Value.fromBigInt(value));
+  }
+
+  get daoTba(): Bytes {
+    let value = this.get("daoTba");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set daoTba(value: Bytes) {
+    this.set("daoTba", Value.fromBytes(value));
   }
 
   get daoGovernor(): Bytes {
@@ -237,6 +237,32 @@ export class DAOCreated extends Entity {
 
   set daoUri(value: string) {
     this.set("daoUri", Value.fromString(value));
+  }
+
+  get price(): BigInt {
+    let value = this.get("price");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set price(value: BigInt) {
+    this.set("price", Value.fromBigInt(value));
+  }
+
+  get data(): Bytes {
+    let value = this.get("data");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set data(value: Bytes) {
+    this.set("data", Value.fromBytes(value));
   }
 
   get blockNumber(): BigInt {
@@ -346,6 +372,19 @@ export class DAOJoined extends Entity {
 
   set daoId(value: BigInt) {
     this.set("daoId", Value.fromBigInt(value));
+  }
+
+  get price(): BigInt {
+    let value = this.get("price");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set price(value: BigInt) {
+    this.set("price", Value.fromBigInt(value));
   }
 
   get blockNumber(): BigInt {

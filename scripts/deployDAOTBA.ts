@@ -1,7 +1,7 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const DAOTBA = await ethers.deployContract("contracts/DAOTBA.sol:DAOTBA");
+  const DAOTBA = await ethers.deployContract("contracts/DAOTBA.sol:DAOTBA", {gasLimit: "0x1000000"});
 
   await DAOTBA.waitForDeployment();
 

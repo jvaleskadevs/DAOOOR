@@ -1,11 +1,13 @@
 "use client";
 import { useState, useEffect, createRef } from 'react';
 import { useAccount, useNetwork, useContractWrite } from 'wagmi';
-import { NFTStorage } from 'nft.storage';
+import { parseEther} from 'viem';
+import { NFTStorage, File, Blob } from 'nft.storage';
 import { DAO_REGISTRY_ADDRESS, DAO_REGISTRY_ABI } from '../constants/daoRegistry';
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link, Avatar} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link, Avatar, Select, SelectItem} from "@nextui-org/react";
+import {HeartIcon} from './HeartIcon';
 
-const ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
+const ADDRESS_ZERO_16 = "0x00000000000000000000000000000000";
 
 const CreateDao = () => {
   //const [dao, setDao] = useState<ConfigDao | null>(null);
@@ -18,44 +20,45 @@ const CreateDao = () => {
   const [daoUri, setDaoUri] = useState<string>('');
   const [membershipPrice, setMembershipPrice] = useState<any>('');
   const [sismoGroupId, setSismoGroupId] = useState<string>('');
+  const [daoType, setDaoType] = useState<any>(new Set([]));
+  
+  const [isSelected, setIsSelected] = useState(false);
   
   const { address } = useAccount();
   const { chain } = useNetwork();
   
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   
-  const inputRef = createRef();
+  const inputRef = createRef<HTMLInputElement>();
   
-  const { data, isError, isLoading, isSuccess, write } = useContractWrite({
+  const daoTypes = [
+    "1-of-n, no governor",
+    "1-of-n and governor",
+    "m-of-n, with governor"
+  ];
+  
+  const { data, isError, error, isLoading, isSuccess, write } = useContractWrite({
     address: DAO_REGISTRY_ADDRESS,
     abi: DAO_REGISTRY_ABI,
     functionName: 'createDAO', 
     args: [
       daoUri,
-      membershipPrice ?? 0,
-      sismoGroupId ?? ADDRESS_ZERO
+      parseEther(membershipPrice) ?? 0,
+      daoType?.[0] === daoTypes[0] ? 0 : daoType?.[0] === daoTypes[1] ? 1 : 2,
+      sismoGroupId !== '' ? sismoGroupId as `0x${string}` : ADDRESS_ZERO_16
     ]
   });
-  
-  const onImageInputChange = (e) => {
-    e.preventDefault();
-    
-    const reader = new FileReaderSync();
-    
-    setImage(reader.readAsDataURL(e.target.files[0]));
-  }
-  
+
   const toIPFS = async () => {
-    setI
     try { 
       const client = new NFTStorage({ 
-        token: process.env.NEXT_PUBLIC_NFT_STORAGE_TOKEN
+        token: process.env.NEXT_PUBLIC_NFT_STORAGE_TOKEN as string
       });
-      if (!image) return;
+      if (!name || !desc || image.startsWith('https')) return;
       const metadata = await client.store({
         name: name,
         description: desc,
-        image: image,
+        image: await (await fetch(image)).blob(),
         seller_fee_basis_points: "7.7",
         seller_fee_recipient: address // calc tba address!?
       });
@@ -70,9 +73,13 @@ const CreateDao = () => {
   }
   
   const onCreate = async (onClose) => {
-    if (!name || !desc || !image) return;
+    if (!name || !desc || image.startsWith('https')) return;
     onClose();
     await toIPFS();
+  }
+  
+  const reload = () => {
+    window.location.reload();
   }
   
   useEffect(() => {
@@ -81,6 +88,7 @@ const CreateDao = () => {
   
   useEffect(() => {
     // do something
+    if (isSuccess) reload();
   }, [isSuccess]);
   
   return (
@@ -109,14 +117,17 @@ const CreateDao = () => {
               <Avatar
                 src={image}
                 className="w-20 h-20 text-large mx-auto cursor-pointer"
-                onClick={() => inputRef.current?.click()}
+                onClick={() => (inputRef.current as any)?.click()}
               />
               <input
                 type="file"
                 multiple={false}
                 accept={"image/*"}
                 ref={inputRef}
-                onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
+                onChange={(e) => { 
+                  if (!e.target.files || e.target.files.length === 0) return; 
+                  setImage(URL.createObjectURL(e.target.files[0]));
+                }}
                 className="hidden"
                 value={''}
               />             
@@ -132,6 +143,7 @@ const CreateDao = () => {
                 variant="bordered"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
+                required
               />
               <Input
                 /*
@@ -145,8 +157,23 @@ const CreateDao = () => {
                 variant="bordered"
                 onChange={(e) => setDesc(e.target.value)}
                 value={desc}
+                required
               />
-
+              <Select 
+                label="Governance Schema"
+                placeholder="Choose a way to manage your DAO"
+                variant="bordered"
+                selectedKeys={daoType}
+                onSelectionChange={setDaoType}
+                required
+                //onChange={(e) => setDaoType(new Set([e.target.value.split(",")]))}
+              >
+                { daoTypes.map(item => (
+                  <SelectItem key={item} value={item}>
+                    {item}
+                  </SelectItem>
+                ))}
+              </Select>              
               <Input
                 /*
                 endContent={
@@ -158,7 +185,7 @@ const CreateDao = () => {
                 type="number"
                 variant="bordered"
                 onChange={(e) => setMembershipPrice(e.target.value.toString())}
-                value={typeof membershipPrice === Number ? membershipPrice : ''}
+                value={membershipPrice}
               />
               <Input
                 /*
@@ -175,11 +202,15 @@ const CreateDao = () => {
               />
               <div className="flex py-2 px-1 justify-between">
                 <Checkbox
+                  isSelected={isSelected}
+                  onValueChange={setIsSelected}
+                  // @ts-ignore: missing propoerties
+                  icon={<HeartIcon/>}
                   classNames={{
                     label: "text-small text-default-500",
                   }}
                 >
-                  Remember me
+                  { isSelected ? 'EthOnline2023 💙💙💙' : 'Remember me' }
                 </Checkbox>
                 <Link href="#" size="sm" className="text-default-500">
                   Learn more
@@ -202,8 +233,7 @@ const CreateDao = () => {
       </ModalContent>
     </Modal>
     
-    { isError && <p>{isError.error}</p> }
-    { data && <p className="overflow-x-hidden">Tx Hash: {data.txHash}</p> }
+    { data && <p className="overflow-x-hidden">Tx Hash: {data.hash}</p> }
   </>
   );
 }

@@ -53,12 +53,12 @@ export class DAOCreated__Params {
     this._event = event;
   }
 
-  get daoTba(): Address {
-    return this._event.parameters[0].value.toAddress();
+  get daoId(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
   }
 
-  get daoId(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
+  get daoTba(): Address {
+    return this._event.parameters[1].value.toAddress();
   }
 
   get daoGovernor(): Address {
@@ -67,6 +67,14 @@ export class DAOCreated__Params {
 
   get daoUri(): string {
     return this._event.parameters[3].value.toString();
+  }
+
+  get price(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get data(): Bytes {
+    return this._event.parameters[5].value.toBytes();
   }
 }
 
@@ -89,6 +97,10 @@ export class DAOJoined__Params {
 
   get daoId(): BigInt {
     return this._event.parameters[1].value.toBigInt();
+  }
+
+  get price(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
   }
 }
 
@@ -172,40 +184,61 @@ export class DAORegistry__configResultValue0VaultStruct extends ethereum.Tuple {
 
 export class DAORegistry__configOfResult {
   value0: BigInt;
-  value1: Bytes;
+  value1: Address;
   value2: Address;
   value3: string;
+  value4: BigInt;
+  value5: Bytes;
 
-  constructor(value0: BigInt, value1: Bytes, value2: Address, value3: string) {
+  constructor(
+    value0: BigInt,
+    value1: Address,
+    value2: Address,
+    value3: string,
+    value4: BigInt,
+    value5: Bytes
+  ) {
     this.value0 = value0;
     this.value1 = value1;
     this.value2 = value2;
     this.value3 = value3;
+    this.value4 = value4;
+    this.value5 = value5;
   }
 
   toMap(): TypedMap<string, ethereum.Value> {
     let map = new TypedMap<string, ethereum.Value>();
     map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
-    map.set("value1", ethereum.Value.fromFixedBytes(this.value1));
+    map.set("value1", ethereum.Value.fromAddress(this.value1));
     map.set("value2", ethereum.Value.fromAddress(this.value2));
     map.set("value3", ethereum.Value.fromString(this.value3));
+    map.set("value4", ethereum.Value.fromUnsignedBigInt(this.value4));
+    map.set("value5", ethereum.Value.fromFixedBytes(this.value5));
     return map;
   }
 
-  getTokenPrice(): BigInt {
+  getDaoId(): BigInt {
     return this.value0;
   }
 
-  getSismoGroupId(): Bytes {
+  getDaotba(): Address {
     return this.value1;
   }
 
-  getDaotba(): Address {
+  getDaoGov(): Address {
     return this.value2;
   }
 
   getDaoURI(): string {
     return this.value3;
+  }
+
+  getTokenPrice(): BigInt {
+    return this.value4;
+  }
+
+  getSismoGroupId(): Bytes {
+    return this.value5;
   }
 }
 
@@ -413,15 +446,17 @@ export class DAORegistry extends ethereum.SmartContract {
   configOf(param0: BigInt): DAORegistry__configOfResult {
     let result = super.call(
       "configOf",
-      "configOf(uint256):(uint256,bytes16,address,string)",
+      "configOf(uint256):(uint256,address,address,string,uint256,bytes16)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
 
     return new DAORegistry__configOfResult(
       result[0].toBigInt(),
-      result[1].toBytes(),
+      result[1].toAddress(),
       result[2].toAddress(),
-      result[3].toString()
+      result[3].toString(),
+      result[4].toBigInt(),
+      result[5].toBytes()
     );
   }
 
@@ -430,7 +465,7 @@ export class DAORegistry extends ethereum.SmartContract {
   ): ethereum.CallResult<DAORegistry__configOfResult> {
     let result = super.tryCall(
       "configOf",
-      "configOf(uint256):(uint256,bytes16,address,string)",
+      "configOf(uint256):(uint256,address,address,string,uint256,bytes16)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
     if (result.reverted) {
@@ -440,9 +475,11 @@ export class DAORegistry extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new DAORegistry__configOfResult(
         value[0].toBigInt(),
-        value[1].toBytes(),
+        value[1].toAddress(),
         value[2].toAddress(),
-        value[3].toString()
+        value[3].toString(),
+        value[4].toBigInt(),
+        value[5].toBytes()
       )
     );
   }
@@ -483,6 +520,29 @@ export class DAORegistry extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toI32());
+  }
+
+  governanceDeployer(): Address {
+    let result = super.call(
+      "governanceDeployer",
+      "governanceDeployer():(address)",
+      []
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_governanceDeployer(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "governanceDeployer",
+      "governanceDeployer():(address)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
   isOperator(owner: Address, spender: Address): boolean {
@@ -803,6 +863,10 @@ export class ConstructorCall__Inputs {
   get _daotbaImplAddr(): Address {
     return this._call.inputValues[1].value.toAddress();
   }
+
+  get _governanceDeployer(): Address {
+    return this._call.inputValues[2].value.toAddress();
+  }
 }
 
 export class ConstructorCall__Outputs {
@@ -880,8 +944,12 @@ export class CreateDAOCall__Inputs {
     return this._call.inputValues[1].value.toBigInt();
   }
 
+  get daoType(): i32 {
+    return this._call.inputValues[2].value.toI32();
+  }
+
   get data(): Bytes {
-    return this._call.inputValues[2].value.toBytes();
+    return this._call.inputValues[3].value.toBytes();
   }
 }
 
@@ -927,6 +995,48 @@ export class JoinDAOCall__Outputs {
   _call: JoinDAOCall;
 
   constructor(call: JoinDAOCall) {
+    this._call = call;
+  }
+}
+
+export class SetConfigDaoCall extends ethereum.Call {
+  get inputs(): SetConfigDaoCall__Inputs {
+    return new SetConfigDaoCall__Inputs(this);
+  }
+
+  get outputs(): SetConfigDaoCall__Outputs {
+    return new SetConfigDaoCall__Outputs(this);
+  }
+}
+
+export class SetConfigDaoCall__Inputs {
+  _call: SetConfigDaoCall;
+
+  constructor(call: SetConfigDaoCall) {
+    this._call = call;
+  }
+
+  get daoId(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
+  }
+
+  get tokenPrice(): BigInt {
+    return this._call.inputValues[1].value.toBigInt();
+  }
+
+  get sismoGroupId(): Bytes {
+    return this._call.inputValues[2].value.toBytes();
+  }
+
+  get daoURI(): string {
+    return this._call.inputValues[3].value.toString();
+  }
+}
+
+export class SetConfigDaoCall__Outputs {
+  _call: SetConfigDaoCall;
+
+  constructor(call: SetConfigDaoCall) {
     this._call = call;
   }
 }

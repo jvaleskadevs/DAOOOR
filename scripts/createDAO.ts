@@ -10,8 +10,8 @@ import { DAO_REGISTRY_ABI } from "../app/constants/daoRegistry";
 async function main() {
   const [signer] = await ethers.getSigners();
   
-  const DAORegistryAddress = "0xeBD0bb6f463971044fB07b91C5B6eD191795a5D9";
-  const DAORegistry = await ethers.getContractAt("contracts/DAORegistry.sol:DAORegistry", DAORegistryAddress, signer);
+  const DAORegistryAddress = "0x43FDf679DCb7cF5D9469dC9Ca4D3915a64633568";
+  const DAORegistry = await ethers.getContractAt("contracts/DAORegistryS.sol:DAORegistry", DAORegistryAddress, signer);
   
   const totalDAOs = await DAORegistry.totalDAOs();
   console.log(totalDAOs);

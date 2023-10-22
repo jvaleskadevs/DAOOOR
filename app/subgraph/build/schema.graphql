@@ -11,10 +11,12 @@ type Approval @entity(immutable: true) {
 
 type DAOCreated @entity(immutable: true) {
   id: Bytes!
-  daoTba: Bytes! # address
   daoId: BigInt! # uint256
+  daoTba: Bytes! # address
   daoGovernor: Bytes! # address
   daoUri: String! # string
+  price: BigInt! # uint256
+  data: Bytes! # bytes16
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -24,6 +26,7 @@ type DAOJoined @entity(immutable: true) {
   id: Bytes!
   member: Bytes! # address
   daoId: BigInt! # uint256
+  price: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!

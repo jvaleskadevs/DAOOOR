@@ -6,9 +6,9 @@ dataSources:
     name: DAORegistry
     network: mumbai
     source:
-      address: "0x559b00EDacFa5EE8dDD82e1CD53c0D23bc798684"
+      address: "0xeBD0bb6f463971044fB07b91C5B6eD191795a5D9"
       abi: DAORegistry
-      startBlock: 41300690
+      startBlock: 41419793
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -25,9 +25,9 @@ dataSources:
       eventHandlers:
         - event: Approval(indexed address,indexed address,indexed uint256,uint256)
           handler: handleApproval
-        - event: DAOCreated(indexed address,indexed uint256,indexed address,string)
+        - event: DAOCreated(indexed uint256,indexed address,indexed address,string,uint256,bytes16)
           handler: handleDAOCreated
-        - event: DAOJoined(indexed address,indexed uint256)
+        - event: DAOJoined(indexed address,indexed uint256,uint256)
           handler: handleDAOJoined
         - event: OperatorSet(indexed address,indexed address,bool)
           handler: handleOperatorSet

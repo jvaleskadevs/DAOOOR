@@ -7,12 +7,12 @@ import { DAO_REGISTRY_ABI } from "../app/constants/daoRegistry";
 async function main() {
   const [signer] = await ethers.getSigners();
   
-  const DAORegistryAddress = "0xeBD0bb6f463971044fB07b91C5B6eD191795a5D9";
+  const DAORegistryAddress = "0x53f6DD0d1eb5649Aa3BD65c54e6dA7631F4F22Bb";
   const DAORegistry = await ethers.getContractAt(
-    "contracts/DAORegistry.sol:DAORegistry", DAORegistryAddress, signer
+    "contracts/DAORegistryS.sol:DAORegistry", DAORegistryAddress, signer
   );
   
-  const daoConfig = await DAORegistry.configOf(3);
+  const daoConfig = await DAORegistry.configOf(2);
   console.log(daoConfig);
   
   const DAOTBA = await ethers.getContractAt(
@@ -25,7 +25,8 @@ async function main() {
   let tx = await DAOTBA.executeCall(
     signer.address,
     daotbaBalance,
-    "0x"
+    "0x",
+    {gasLimit: "0x1000000"}
   );
   await tx.wait();
   console.log(tx);

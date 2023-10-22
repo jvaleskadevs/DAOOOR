@@ -4,11 +4,11 @@ async function main() {
   const [deployer] = await ethers.getSigners();
   
   // Deploy DAORegistry
-  
-  const ERC6551Registry = "0x7721337863daEF71011c4Cb690CE895228b4dFFF";
-  const DAOTBA = "0x3cA14d1C38de45E9943653Ec4D441bC927b8b30c";
-  const GovernanceDeployer = "0xDf223b69512796D871eF24fCd48D6fa3130559bA";
-  const DAORegistry = await ethers.deployContract("contracts/DAORegistry.sol:DAORegistry", [ERC6551Registry, DAOTBA, GovernanceDeployer]);
+
+  const ERC6551Registry = "0x6efa9246af1f6f1f9577990ffe7d07fa0d7101b5";
+  const DAOTBA = "0x903b4111C9eDe8Da0062e252a67284f5fad64C11";
+  const GovernanceDeployerAddress = "0xCEe0d0738820E5972aF4e5487b1b7300C2C32362";
+  const DAORegistry = await ethers.deployContract("contracts/DAORegistryS.sol:DAORegistry", [ERC6551Registry, DAOTBA, GovernanceDeployerAddress], {gasLimit: "0x1000000"});
 
   await DAORegistry.waitForDeployment();
 
@@ -17,13 +17,16 @@ async function main() {
     `DAORegistry deployed to ${DAORegistry.target}`
   );
   console.log("/////////////////////////");
-  
+
+/*
+  const DAORegistry = await ethers.getContractAt("contracts/DAORegistryS.sol:DAORegistry", "0x599D3d303d70b23f80a4Be7db4E6E701663034D8", deployer);
+  const GovernanceDeployerAddress = "0xe693f349A6e6D585A53f16093C8a3e7e85444b12";
+*/
+ 
   // Transfer ownership of GovernanceDeployer
+  const GovernanceDeployer = await ethers.getContractAt("GovernanceDeployer", GovernanceDeployerAddress, deployer);
   
-  const GovernanceDeployerAddress = "0xDf223b69512796D871eF24fCd48D6fa3130559bA";
-  const GovernanceDeployer = await ethers.getContractAt("GovernanceDeployer", GovernanceDeployerAddress, signer);
-  
-  let tx = await GovernanceDeployer.transferOwnership(DAORegistry.target);
+  let tx = await GovernanceDeployer.transferOwnership(DAORegistry.target, {gasLimit: "0x1000000"});
   await tx.wait();
   console.log(tx);
   
@@ -42,7 +45,8 @@ async function main() {
   // a high price to force sismo verification
   let daoPrice = ethers.parseEther("7777777");
   
-  let tx = await DAORegistry.createDAO(daoUri, daoPrice, daoType, sismoGroupId);
+  tx = await DAORegistry.createDAO(daoUri, daoPrice, daoType, sismoGroupId, {gasLimit: "0x1000000"});
+  await tx.wait();
   console.log(tx);
   
   console.log("/////////////////////////");
@@ -56,7 +60,8 @@ async function main() {
   // a low price, governor gives more protection
   daoPrice = ethers.parseEther("0.001");
   
-  tx = await DAORegistry.createDAO(daoUri, daoPrice, daoType, sismoGroupId);
+  tx = await DAORegistry.createDAO(daoUri, daoPrice, daoType, sismoGroupId, {gasLimit: "0x1000000"});
+  await tx.wait();
   console.log(tx);
   
   console.log("/////////////////////////");
@@ -70,7 +75,8 @@ async function main() {
   // a low price, this is the safest and recommended daoType
   daoPrice = ethers.parseEther("0.001");
   
-  tx = await DAORegistry.createDAO(daoUri, daoPrice, daoType, sismoGroupId);
+  tx = await DAORegistry.createDAO(daoUri, daoPrice, daoType, sismoGroupId, {gasLimit: "0x1000000"});
+  await tx.wait();
   console.log(tx);
   
   console.log("/////////////////////////");
