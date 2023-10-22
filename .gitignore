@@ -13,8 +13,5 @@ app/node_modules
 cache
 artifacts
 
-## Old files
-contracts/interfaces/IDAORegistry.sol
-contracts/DAORegistry.sol
 
 

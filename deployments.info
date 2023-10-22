@@ -1,0 +1,442 @@
+----------------------------------
+----------------------------------
+        Deployments
+--------------------------------------------------------------
+--------------------------------------------------------------
+  
+                    Polygon Mumbai
+
+                        80001
+
+// Deployments
+
+ERC6551Registry
+0x7721337863daEF71011c4Cb690CE895228b4dFFF
+
+GovernanceDeployer
+0xDf223b69512796D871eF24fCd48D6fa3130559bA
+https://mumbai.polygonscan.com/address/0xDf223b69512796D871eF24fCd48D6fa3130559bA#code
+
+DAOTBA Implementation address
+0x3cA14d1C38de45E9943653Ec4D441bC927b8b30c
+https://mumbai.polygonscan.com/address/0x3cA14d1C38de45E9943653Ec4D441bC927b8b30c#code
+
+DAORegistry
+0xeBD0bb6f463971044fB07b91C5B6eD191795a5D9
+https://mumbai.polygonscan.com/address/0xeBD0bb6f463971044fB07b91C5B6eD191795a5D9#code
+
+// Transfer Ownership
+
+Ownership of GovernanceDeployer transferred to DAORegistry
+txHash: 
+0x0aba82be3c551d054242ef1fd6691e57baa656fc8c3b1068b77f5590acd7687f
+
+// Create DAO TBAs
+
+Created DAOTBA #1
+0xdaEeE01ACbe17A2A7d5874DA7bE2BD84Df372374
+No governor.
+txHash: 
+0x6d088faa91d6049a11f9c2324ee17858fb46cc69f92c17623a0e12d83b26a557
+
+Created DAOTBA #2
+0x1270Bd1fD2ecEa7b26b24070d35eCC7B8F4a8B6A
+Deployed Governor:
+0x7fb8fB007a99049642E6E1631697595606d23309
+txHash: 
+0x3f200a6fd010a0e9c050ba9a35e2bf683dff62425afca148976bc01ede3c2f7e
+
+Created DAOTBA #3
+0x079c3eDf4C133827621733500c67f099A0179d9A
+Deployed Governor:
+0x8367207D16a518A4Ffb90A9Dd56913F7ce136E2B
+txHash: 
+0x927cf29cc3a9e6e45adbbfd0d0e5bee60b66d929d39d13a9400c92a1883e6d5a
+
+// Join DAOs
+
+(DAOTBA #1 is too much expensive to join)
+Joined DAOTBA #2
+txHash: 0x5a010367ebec350651f45049f94533de489f4451420aa1a1205e8599434ef7fb
+Joined DAOTBA #3
+txHash: 0x91e2b7458430714afdefd8d60f8756a954f462a78638b30c83023bff977e65f4
+
+// Withdraw from DAO TBAs calling executeCall
+
+Executed Call from DAOTBA #1
+txHash:
+0xc4ffe4d350bd7d8e3e44c3f1ad857d6d17bb79bb480186b8d0f966498c64021a
+
+Executed Call from DAOTBA #2
+txHash:
+0x500fcd670450d8d71ef41381317d22acd630fc384ebe60085baf2516030e8d6d
+
+ExecuteCall reverted, as expected, from DAOTBA #3
+Execution reverted: OnlyGovernor
+
+// Test DAOTBAs OZ Governor proposal system on Tally UI
+
+Tally DAOTBA #2
+https://www.tally.xyz/gov/daotba-2
+
+Tally DAOTBA #3
+https://www.tally.xyz/gov/daotba-3
+
+
+Everything is working fine!!
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+
+                      Mantle (Testnet)
+
+                          5001
+
+DAORegistryS instead DAORegistry (no sismo support)
+
+// Deployments
+
+ERC6551Registry
+0x7721337863daEF71011c4Cb690CE895228b4dFFF
+https://explorer.testnet.mantle.xyz/address/0x7721337863daEF71011c4Cb690CE895228b4dFFF#code
+
+DAOTBA Implementation
+0x9Eaa853832f32f77027328c976b4570Db9066630
+https://explorer.testnet.mantle.xyz/address/0x9Eaa853832f32f77027328c976b4570Db9066630#code
+
+GovernanceDeployer
+0xe693f349A6e6D585A53f16093C8a3e7e85444b12
+https://explorer.testnet.mantle.xyz/address/0xe693f349A6e6D585A53f16093C8a3e7e85444b12#code
+
+DAORegistry
+0x599D3d303d70b23f80a4Be7db4E6E701663034D8
+https://explorer.testnet.mantle.xyz/address/0x599D3d303d70b23f80a4Be7db4E6E701663034D8#code
+
+// Transfer Ownership
+
+Ownership of GovernanceDeployer transferred to DAORegistry
+txHash: 0x87c11afbd0021a5571ccefd30330f12383a3a9e0328ae8fd7e191cbdddb1559c
+
+// Create DAO TBAs
+
+Created DAOTBA #1
+0x9EAF9Dd2C240f59af669ad7e1a69ff8A5cb9e191
+No governor.
+txHash: 0xa332b810df5809190ae4e8c5453dd87ac4af06f81d1ae613d35a11c6edf3aa89
+
+Created DAOTBA #2
+0x840650756fc3a30e2ce351934f61449631950B4A
+Deployed Governor:
+0x9Fa341F0a0f0d160080Ea04073D05349c5D13C5E
+txHash: 0x3d5ed7b4500acae34c3cfda4a44dc18456a69fdf03364d92b28381c4f71963ec
+
+Created DAOTBA #3
+0xd8C58e15e4d3Ae9Bf2bE70A67F65099B4960Baf3
+Deployed Governor:
+0xc602A07d68B56C0f69F2AB04FA213Eef1D78f2F8
+txHash: 0x5fcdfec103cef3ee537c18ec6ee0186b87444eea8b9551b6aa833f03d91df4d2
+
+// Join DAOs
+
+(DAOTBA #1 is too much expensive to join)
+Joined DAOTBA #2
+txHash: 0x4b82e1504ba929e2b55e531dd3a44f42435fcc2cb073a640113cac845cc938b3
+Joined DAOTBA #3
+txHash: 0x8ab6db887a2f8a5ecf69bcc9cd7ddc9238bf36715c7d791a30f2bb491d227641
+
+// Withdraw from DAO TBAs calling executeCall
+
+Executed Call from DAOTBA #1
+txHash: 0x18b428977128aaac26662558c2849b70facc8058cb502077f4be0e3e8d03f1fe
+
+Executed Call from DAOTBA #2
+txHash: 0x6a7c86fba12acf6fc3e2436ecb3cd3d0a4ad4cb4c58ea47c9fbadf38dbdb78f8
+
+ExecuteCall reverted, as expected, from DAOTBA #3
+Execution reverted: OnlyGovernor
+
+// Withdraw from DAOTBA #3 trough OZ Governor proposal system
+
+delegateVotes
+0x3fbd9af7b144539c652cc96c958b78488bc3afa502ac4fe1c9a36fbd6aec3330
+transferFundsFromTbaToGovernor
+0xd23193dc02f0b075e3c08c87a8bc76823fb6a736949f79c717e9401c4c7b7c1c
+createProposal
+0x04ed345660cf89fde58371d910d6faf273a9acd46f3fe87c494807fca5299eff
+voteOnProposal
+0xd08c52952455bc6e8686e24bdb2b206e1133095e5da936d0bbc55e95357fe562
+executeProposal
+0x793081de61e61a60a3698d43543fa32ae95ad6967d237c88d6409d5490b4efba
+
+// Test DAOTBAs OZ Governor proposal system on Tally UI
+
+Tally DAOTBA #2
+https://www.tally.xyz/gov/daotba-2-mantle
+
+Tally DAOTBA #3
+https://www.tally.xyz/gov/daotba-3-mantle
+
+Everything is working fine, but no Sismo support.
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+
+                    Scroll (Sepolia)
+
+                        534351
+                  
+DAORegistryS instead DAORegistry (no sismo support)
+
+// Deployments
+
+ERC6551Registry
+0x7721337863daEF71011c4Cb690CE895228b4dFFF
+https://sepolia-blockscout.scroll.io/address/0x7721337863daEF71011c4Cb690CE895228b4dFFF#code
+
+DAOTBA Implementation
+0x9Eaa853832f32f77027328c976b4570Db9066630
+https://sepolia-blockscout.scroll.io/address/0x9Eaa853832f32f77027328c976b4570Db9066630#code
+
+GovernanceDeployer
+0xe693f349A6e6D585A53f16093C8a3e7e85444b12
+https://sepolia-blockscout.scroll.io/address/0xe693f349A6e6D585A53f16093C8a3e7e85444b12#code
+
+DAORegistry
+0x599D3d303d70b23f80a4Be7db4E6E701663034D8 (sismo error deploying)
+0x8db99cb24Cb79225fb9904EEaBE9E32c5f39E710 (sismo error deploying)
+0x43FDf679DCb7cF5D9469dC9Ca4D3915a64633568
+https://sepolia-blockscout.scroll.io/address/0x43FDf679DCb7cF5D9469dC9Ca4D3915a64633568#code
+
+// Transfer Ownership
+
+Ownership of GovernanceDeployer transferred to DAORegistry
+txHash:
+0x3b8ad806410d412702ad7808ead75c621f98c5062f58e379a0832ba0ac57cf1f
+
+// Create DAO TBAs
+
+Created DAOTBA #1
+0x33E5e80bBd0058D6faDC0f454889C146Ff633d43
+No governor.
+txHash: 0x96285361eb97802e0671370de6754db8d198abbcec1014c5ef2b3b0b1351807d
+
+Created DAOTBA #2
+0x2367075c20792D695bc1225E1FAe22F1EdcFB9b6
+Deployed Governor:
+0xF5ab1Fe2c5D430d8Ec94074143dbaD4373D63Adc
+txHash: 0xdd86fd5e9d34299a93263e5d95dcf40dafe4fd23b8c7ce3399a6c0f07c4db294
+
+Created DAOTBA #3
+0xb0285033C8f1dC3480b1Ac7b995d6a3A63F06dBD
+Deployed Governor:
+0x15Fe9704777D0b208D58cb122026821b73a0B730
+txHash: 0xcbd0b03099fa9f0781434a041751123722a42abebec37354f6de6abea61cb7ba
+
+// Join DAOs
+
+(DAOTBA #1 is too much expensive to join)
+Joined DAOTBA #2
+txHash: 0xc0a859cdda4ec69f3866e314f164dea770eee4f00e2678393ca2743f207eaa69
+Joined DAOTBA #3
+txHash: 0x1b93923357b4fa2461c3ff1992edc0cf94a1276628cbdf3cef71a9f190e6c925
+
+// Withdraw from DAO TBAs calling executeCall
+
+Executed Call from DAOTBA #1
+txHash: 0x0efe686993ebd7d5fbaabace03d880b69c45fcf7297bf11d3a6f70d9fba47ac9
+
+Executed Call from DAOTBA #2
+txHash: 0x9315749ddfb3a8c8aba886cff907f226ba42989550d6ceb119e4d505884db04c
+
+ExecuteCall reverted, as expected, from DAOTBA #3
+Execution reverted: OnlyGovernor
+
+// Withdraw from DAOTBA #3 trough OZ Governor proposal system
+
+delegateVotes
+0x07eeb8a8ce8b03738659879d9aff3197bc35fd03b7f054f3504144bfc5e7c297
+createProposal
+0x3a704aa32194d7ed8d56f8aa55eb250145ca968fcdc33c5cea812b747b3f1058
+sendFundFromTbaToGovernor
+0x2655ba61af33586ebb7888056b70e70c52833eccb54f159128362361507df3fa
+voteOnProposal
+0xbe9626742695b8555cddab5e0e1b678a3dc1b42d51591f6e2e204b59b7bf8923
+executeProposal
+0x66fb27d9e5eafb89d1bb4166b2534e4be006ffeb6988a85188daf93f3249d780
+
+// Test DAOTBAs OZ Governor proposal system on Tally UI
+
+Tally DAOTBA #2
+https://www.tally.xyz/gov/daotba-2-scroll
+
+Tally DAOTBA #3
+https://www.tally.xyz/gov/daotba-3-scroll
+
+Everything is working fine, but no Sismo support.
+
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+
+              Polygon zkEVM (testnet)
+
+
+                      1442
+          
+// Deployments
+
+ERC6551Registry
+0x6efa9246af1f6f1f9577990ffe7d07fa0d7101b5
+
+
+GovernanceDeployer
+0xCEe0d0738820E5972aF4e5487b1b7300C2C32362
+https://testnet-zkevm.polygonscan.com/address/0xCEe0d0738820E5972aF4e5487b1b7300C2C32362#code
+
+DAOTBA Implementation address
+0x903b4111C9eDe8Da0062e252a67284f5fad64C11
+https://testnet-zkevm.polygonscan.com/address/0x903b4111C9eDe8Da0062e252a67284f5fad64C11#code
+
+DAORegistry
+0x53f6DD0d1eb5649Aa3BD65c54e6dA7631F4F22Bb
+https://testnet-zkevm.polygonscan.com/address/0x53f6DD0d1eb5649Aa3BD65c54e6dA7631F4F22Bb#code
+
+
+// Transfer Ownership
+
+Ownership of GovernanceDeployer transferred to DAORegistry
+txHash: 0x31d8313815fe862ace2ed2d8e7a94763a29abb7f395bcb95e257ac8b785bc23b
+
+
+// Create DAO TBAs
+
+Created DAOTBA #1
+0xE218842FA782D572B7367fd106Ff00b6DC17477f
+No governor.
+txHash: 0x51b47f7351fa1ee62478c9b0d3215aa45e83e5101ac9b9959cd366a6f5869df2
+
+
+Created DAOTBA #2
+0x0E1115779758FC5484705b52795378122821f754
+Deployed Governor:
+0x73A01565B0532a2CC7322d6B0eE85e391F00acDF
+txHash: 0x933fa2de06326e87a99fabbcb4950956debb5c6b1b018a31287537f5b8ee1ee5
+
+
+Created DAOTBA #3
+0xc99Cfe2f3916bE3fD4dc6C0aa817b33298241693
+Deployed Governor:
+0xE1756469A923106920617a2c4D298E61C26D69ea
+txHash: 0xd8b7639efdf70d2c82e31e1b3bd7472fc0826788a9bd1361cb4ab72ee3101636
+
+
+// Join DAOs
+
+(DAOTBA #1 is too much expensive to join)
+Joined DAOTBA #2
+txHash: 0x4d924882d9d2e9b723eff37d4609687759c77d01600267c71f92a370a9d75208
+Joined DAOTBA #3
+txHash: 0x4598776b62b81520ce0ee33ec87277112ebdbd747fd7945626b4fbeefe31df2e
+
+// Withdraw from DAO TBAs calling executeCall
+
+Executed Call from DAOTBA #1
+txHash: 0x9a00c9c6f7270231ae78fe5dad9049945cc710f9e40a9f1fc273cefc4bd75bae
+
+Executed Call from DAOTBA #2
+txHash: 0xd25c0216d5f23ca7a95e37b3879a5fca46ee81281aae0eab76bff3a0ebad70c7
+
+ExecuteCall reverted, as expected, from DAOTBA #3
+Execution reverted: OnlyGovernor
+
+// Withdraw from DAOTBA #3 trough OZ Governor proposal system
+
+delegateVotes
+0xe189c79deb4237db5b421cf85cd8d1f417f9621fbbb50dc59869bab9912136a1
+createProposal
+0x7bacab17c7e177435dced7ea68b57180a24ad17277c51621f2c7486d4a3e063c
+sendFundsFromTbaToGovernor
+0xa3460069fdf3b2638a3fbc0a6e34141dc61650a3fb9e237bf8cabbc5716f2342
+voteOnProposal
+0xc2e2f85bb4f1dfa24c755279cb4d698da576562072f5f67b621ce7d6021d5f1f
+executeProposal
+
+
+// Test DAOTBAs OZ Governor proposal system on Tally UI
+
+Tally DAOTBA #2
+https://www.tally.xyz/gov/daotba-2-zkevm
+
+Tally DAOTBA #3
+https://www.tally.xyz/gov/daotba-3-zkevm
+
+
+Everything is working fine, but no Sismo support.
+
+
+--------------------------------------------------------------
+
+
+scripts flow
+
+1 - deployERC6551Registry
+2 - deployDAOTBA
+3 - deployGovernanceDeployer
+4 - deployDAORegistry
+5 - transferOwnership
+6 - createDAO
+7 - joinDAO
+8 - infoDAO
+
+dapp flow
+
+9 - update and deploy subgraph
+10 - update constants/daoRegistry.ts abi and address
+11 - test create, join and joinWithSismo from dapp
+
+governor scripts flow
+
+1 - executeCallCreateProposal
+2 - executeCallVoteOnProposal
+3 - executeCallExecuteProposal
+
+governor tally flow (UI)
+
+12 - add governor to Tally
+13 - delegate votes
+14 - createProposal
+15 - vote
+16 - executeProposal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
