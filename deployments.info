@@ -192,20 +192,22 @@ DAORegistryS instead DAORegistry (no sismo support)
 ERC6551Registry
 0x7721337863daEF71011c4Cb690CE895228b4dFFF
 https://sepolia-blockscout.scroll.io/address/0x7721337863daEF71011c4Cb690CE895228b4dFFF#code
+https://sepolia.scrollscan.dev/address/0x7721337863daEF71011c4Cb690CE895228b4dFFF#code
 
 DAOTBA Implementation
 0x9Eaa853832f32f77027328c976b4570Db9066630
 https://sepolia-blockscout.scroll.io/address/0x9Eaa853832f32f77027328c976b4570Db9066630#code
+https://sepolia.scrollscan.dev/address/0x9Eaa853832f32f77027328c976b4570Db9066630#code
 
 GovernanceDeployer
 0xe693f349A6e6D585A53f16093C8a3e7e85444b12
 https://sepolia-blockscout.scroll.io/address/0xe693f349A6e6D585A53f16093C8a3e7e85444b12#code
+https://sepolia.scrollscan.dev/address/0xe693f349A6e6D585A53f16093C8a3e7e85444b12#code
 
 DAORegistry
-0x599D3d303d70b23f80a4Be7db4E6E701663034D8 (sismo error deploying)
-0x8db99cb24Cb79225fb9904EEaBE9E32c5f39E710 (sismo error deploying)
 0x43FDf679DCb7cF5D9469dC9Ca4D3915a64633568
 https://sepolia-blockscout.scroll.io/address/0x43FDf679DCb7cF5D9469dC9Ca4D3915a64633568#code
+https://sepolia.scrollscan.dev/address/0x43FDf679DCb7cF5D9469dC9Ca4D3915a64633568#code
 
 // Transfer Ownership
 

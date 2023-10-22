@@ -40,7 +40,7 @@ const config: HardhatUserConfig = {
       zkEVM: process.env.SCAN_ZKEVM,
       polygonMumbai: process.env.SCAN_MUMBAI,
       mantleTestnet: 'abc',
-      scrollSepolia: 'abc',
+      scrollSepolia: process.env.SCAN_SCROLL ?? 'abc',
     },
     customChains: [
       {
@@ -55,8 +55,8 @@ const config: HardhatUserConfig = {
         network: 'scrollSepolia',
         chainId: 534351,
         urls: {
-          apiURL: 'https://sepolia-blockscout.scroll.io/api',
-          browserURL: 'https://sepolia-blockscout.scroll.io/',
+          apiURL: 'https://api-sepolia.scrollscan.dev/api',//'https://sepolia-blockscout.scroll.io/api',
+          browserURL: 'https://sepolia.scrollscan.dev/'// 'https://sepolia-blockscout.scroll.io/',
         },
       },
       {
